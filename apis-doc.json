@@ -1,0 +1,211 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"description": "Api Documentation",
+		"version": "1.0",
+		"title": "Api Documentation",
+		"termsOfService": "urn:tos",
+		"contact": {
+			
+		},
+		"license": {
+			"name": "Apache 2.0",
+			"url": "http://www.apache.org/licenses/LICENSE-2.0"
+		}
+	},
+	"host": "localhost:8080",
+	"basePath": "/",
+	"tags": [
+		{
+			"name": "contact-rest-controller",
+			"description": "Contact Rest Controller"
+		}
+	],
+	"paths": {
+		"/contact": {
+			"post": {
+				"tags": [
+					"contact-rest-controller"
+				],
+				"summary": "contact",
+				"operationId": "contactUsingPOST",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "contact",
+						"description": "contact",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Contact"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/contact/{cid}": {
+			"post": {
+				"tags": [
+					"contact-rest-controller"
+				],
+				"summary": "getContact",
+				"operationId": "getContactUsingPOST",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "cid",
+						"in": "path",
+						"description": "cid",
+						"required": true,
+						"type": "integer",
+						"format": "int32"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Contact"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			},
+			"delete": {
+				"tags": [
+					"contact-rest-controller"
+				],
+				"summary": "deleteContact",
+				"operationId": "deleteContactUsingDELETE",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "cid",
+						"in": "path",
+						"description": "cid",
+						"required": true,
+						"type": "integer",
+						"format": "int32"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"204": {
+						"description": "No Content"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					}
+				}
+			}
+		},
+		"/contacts": {
+			"get": {
+				"tags": [
+					"contact-rest-controller"
+				],
+				"summary": "getAllContacts",
+				"operationId": "getAllContactsUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/Contact"
+							}
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		}
+	},
+	"definitions": {
+		"Contact": {
+			"type": "object",
+			"properties": {
+				"activeSw": {
+					"type": "string"
+				},
+				"cid": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"email": {
+					"type": "string"
+				},
+				"name": {
+					"type": "string"
+				},
+				"phno": {
+					"type": "integer",
+					"format": "int64"
+				}
+			},
+			"title": "Contact"
+		}
+	}
+}

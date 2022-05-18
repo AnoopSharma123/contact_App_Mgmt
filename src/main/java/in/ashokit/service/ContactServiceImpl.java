@@ -16,7 +16,14 @@ public class ContactServiceImpl implements ContactService {
 
 	@Override
 	public String deleteContact(int id) {
-		repo.deleteById(id);
+		// repo.deleteById(id);
+		Optional<Contact> findById = repo.findById(id);
+		if (findById.isPresent()) {
+			Contact contact = repo.getById(id);
+			contact.setActiveSw("N");
+			repo.save(contact);
+		}
+
 		return "SUCESS";
 	}
 
